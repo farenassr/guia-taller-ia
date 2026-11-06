@@ -261,7 +261,7 @@
         <p class="tag">Modo plan ON · menciona con <code>@</code> a <code>@superpowers</code> (u otro skill o plugin)</p>
         <p>Si trabajas en Codex con una carpeta local, pide que el <code>AGENTS.md</code> quede en la raíz y que indique que los skills están en <code>.agents/skills/</code>. Usa el <a href="#ejemplo-agents" style="color: var(--accent)">ejemplo de abajo</a>.</p>
         <div class="copy">
-          <pre id="prompt-plan">@superpowers
+          <pre id="prompt-plan">Usa @superpowers.
 
 ROL: Eres un diseñador web experto.
 
@@ -273,7 +273,12 @@ FORMATO: Un solo archivo HTML que se vea bien en el celular. Fondo oscuro (#0b0b
 
 EJEMPLO: Una página limpia, con una pantalla por sección y párrafos de máximo 3 líneas.
 
-Antes de construir, hazme las preguntas que necesites, una por una, y propón un plan. En el plan incluye crear un AGENTS.md y un skill de diseño para este proyecto. No escribas código hasta que yo diga «aprobado».</pre>
+Antes de construir, hazme las preguntas que necesites, una por una, y propón un plan. Incluye estos pasos en el plan:
+
+- Crear el skill de diseño en .agents/skills/my-skill-design/SKILL.md.
+- Crear AGENTS.md en la raíz del proyecto. Dentro, agrega una sección «Skills del proyecto» que indique que los skills están en .agents/skills/ y que se debe consultar .agents/skills/my-skill-design/SKILL.md al crear o modificar la landing.
+
+No escribas código hasta que yo diga «aprobado».</pre>
           <button data-copy="prompt-plan">Copiar</button>
         </div>
       </section>
