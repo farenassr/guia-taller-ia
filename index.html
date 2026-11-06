@@ -259,6 +259,7 @@
       <section class="step" data-n="5">
         <h2>Activa el modo plan y pide</h2>
         <p class="tag">Modo plan ON · menciona con <code>@</code> a <code>@superpowers</code> (u otro skill o plugin)</p>
+        <p>Si trabajas en Codex con una carpeta local, pide que el <code>AGENTS.md</code> quede en la raíz y que indique que los skills están en <code>.agents/skills/</code>. Usa el <a href="#ejemplo-agents" style="color: var(--accent)">ejemplo de abajo</a>.</p>
         <div class="copy">
           <pre id="prompt-plan">@superpowers
 
@@ -277,10 +278,10 @@ Antes de construir, hazme las preguntas que necesites, una por una, y propón un
         </div>
       </section>
 
-      <section class="step" data-n="6">
+      <section class="step" data-n="6" id="ejemplo-agents">
         <h2>Ejemplo de AGENTS.md y de un skill</h2>
         <p class="tag">Para partir de algo · el agente los creará con tus datos</p>
-        <p><b>AGENTS.md</b> es el manual de inducción del proyecto: lo primero que lee el agente. Guárdalo en la raíz de tu carpeta.</p>
+        <p><b>AGENTS.md</b> es el manual del proyecto. Guárdalo en la raíz, al mismo nivel que <code>.agents/</code>, e indica dónde encontrar los skills.</p>
         <div class="copy">
           <pre id="ej-agents"># AGENTS.md
 
@@ -296,16 +297,20 @@ La landing de nuestro proyecto universitario: [nombre del proyecto y una frase d
 - Sin datos de clientes, fotos reales ni teléfonos personales: usa iniciales o avatares.
 - Un solo archivo HTML que se vea bien en el celular.
 
+## Skills del proyecto
+- Busca los skills en `.agents/skills/`, desde la raíz del proyecto.
+- Para crear o modificar la landing, sigue `.agents/skills/my-skill-design/SKILL.md`.
+
 ## Cómo trabajamos
 1. Primero el plan y las preguntas. No escribas código hasta que yo diga «aprobado».
 2. Construye en pasos pequeños.
 3. Prueba en el navegador y muéstrame capturas.</pre>
           <button data-copy="ej-agents">Copiar</button>
         </div>
-        <p>Un <b>skill</b> es una receta que el agente lee cuando la necesita. Va en un archivo <code>SKILL.md</code> dentro de una carpeta, por ejemplo <code>.cursor/skills/diseno-landing/</code> (en ChatGPT, súbelo como un archivo más de tu carpeta o proyecto).</p>
+        <p>Un <b>skill</b> es una receta que el agente consulta cuando la necesita. En Codex, crea la carpeta <code>.agents/skills/my-skill-design/</code> y guarda dentro el archivo <code>SKILL.md</code>.</p>
         <div class="copy">
           <pre id="ej-skill">---
-name: diseno-landing
+name: my-skill-design
 description: Reglas de diseño para la landing del proyecto. Usar al crear o cambiar cualquier sección de la página.
 ---
 # Diseño de la landing
