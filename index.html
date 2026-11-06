@@ -1,0 +1,408 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guía del taller · La landing de nuestro proyecto</title>
+    <style>
+      :root {
+        --accent: #ff7fbf;
+        --accent2: #8f6bff;
+        --text: #f6f1ea;
+        --muted: rgba(246, 241, 234, 0.66);
+        --card: rgba(255, 255, 255, 0.06);
+        --line: rgba(255, 255, 255, 0.14);
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(600px 400px at 90% 0%, rgba(143, 107, 255, 0.35), transparent 70%),
+          radial-gradient(600px 400px at 0% 10%, rgba(255, 127, 191, 0.25), transparent 70%),
+          #0b0b14;
+        background-attachment: fixed;
+        color: var(--text);
+        font: 17px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+      .guia { max-width: 680px; margin: 0 auto; padding: 32px 16px 80px; }
+
+      .hero { text-align: center; padding: 8px 0 12px; }
+      .eyebrow {
+        display: inline-block;
+        margin: 0;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-weight: 700;
+        font-size: clamp(34px, 10vw, 54px);
+        line-height: 1.05;
+        margin: 16px 0 8px;
+        background: linear-gradient(90deg, #fff, var(--accent) 60%, var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lead { font-size: 20px; color: var(--muted); margin: 0 0 22px; }
+
+      .flow {
+        list-style: none; padding: 0; margin: 0;
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+      }
+      .flow li {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px 4px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .flow span { display: block; font-size: 26px; margin-bottom: 2px; }
+
+      h2 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 24px;
+        line-height: 1.2;
+        margin: 0 0 6px;
+      }
+      .step {
+        position: relative;
+        margin-top: 20px;
+        padding: 22px 18px 18px 72px;
+        border-radius: 22px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      .step::before {
+        content: attr(data-n);
+        position: absolute;
+        left: 16px; top: 18px;
+        width: 42px; height: 42px;
+        border-radius: 14px;
+        display: grid; place-items: center;
+        font-size: 20px; font-weight: 800;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        box-shadow: 0 6px 16px rgba(143, 107, 255, 0.45);
+      }
+      .step p { margin: 6px 0; }
+      .tag { font-size: 13px; font-weight: 700; color: var(--accent); }
+      code {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        padding: 1px 6px;
+        font-size: 0.9em;
+      }
+      .muted { color: var(--muted); font-size: 14px; }
+
+      .checks { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 8px; }
+      .checks li {
+        background: rgba(0, 0, 0, 0.35);
+        border-left: 3px solid var(--accent2);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+      .checks b { display: block; }
+      .checks span { font-size: 14px; color: var(--muted); }
+
+      .formula { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 17px; }
+      .formula i { color: var(--muted); font-style: normal; }
+      .formula b {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 999px;
+        padding: 5px 13px;
+      }
+      .c1 { color: #ff8fb8; } .c2 { color: #ffd24a; } .c3 { color: #5ef0c4; }
+      .c4 { color: #6fb6ff; } .c5 { color: #c49bff; }
+
+      .chips { list-style: none; padding: 0; margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+      .chips li {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 15px;
+      }
+      .why {
+        margin-top: 10px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(143, 107, 255, 0.16);
+        border: 1px solid rgba(143, 107, 255, 0.4);
+        font-size: 15px;
+      }
+      .why ul { margin: 6px 0 0; padding-left: 18px; }
+      .why li { margin: 3px 0; }
+      .mini { padding-left: 20px; margin: 8px 0; }
+      .mini li { margin: 4px 0; }
+
+      .copy { position: relative; margin: 12px 0; }
+      .copy pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        font: 13.5px/1.5 Consolas, 'Courier New', monospace;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--accent);
+        border-radius: 12px;
+        padding: 14px 14px 58px;
+        margin: 0;
+      }
+      .copy button {
+        position: absolute; right: 10px; bottom: 10px;
+        min-height: 42px;
+        border: 0; border-radius: 999px;
+        padding: 0 20px;
+        font: 700 14px system-ui, sans-serif;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        cursor: pointer;
+      }
+      .copy button:active { transform: scale(0.96); }
+
+      .extra {
+        margin-top: 20px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: var(--card);
+        border: 1px solid var(--line);
+      }
+      .extra summary { cursor: pointer; font-weight: 700; }
+      footer { margin-top: 36px; text-align: center; color: var(--muted); }
+      footer b { color: var(--text); }
+
+      @media (min-width: 560px) {
+        .flow { grid-template-columns: repeat(6, 1fr); }
+      }
+      @media (max-width: 420px) {
+        .step { padding: 18px 14px 16px 14px; }
+        .step::before { position: static; margin-bottom: 8px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="guia">
+      <header class="hero">
+        <p class="eyebrow">Clase de IA · Taller</p>
+        <h1>Tu landing, hecha por la IA</h1>
+        <p class="lead">Tú diriges. Ella trabaja.</p>
+        <ol class="flow" aria-label="Resumen del método">
+          <li><span>📁</span>Carpeta</li>
+          <li><span>🧰</span>Instalar</li>
+          <li><span>🗺️</span>Plan</li>
+          <li><span>✅</span>Aprobar</li>
+          <li><span>🛠️</span>Construir</li>
+          <li><span>🔎</span>Probar</li>
+        </ol>
+      </header>
+
+      <section class="step" data-n="1">
+        <h2>Crea tu carpeta de trabajo</h2>
+        <p class="tag">Antes de empezar · 2 min</p>
+        <ol class="mini">
+          <li>Crea una carpeta nueva, por ejemplo <code>mi-landing</code>.</li>
+          <li>Ábrela en ChatGPT o Claude (<b>Importar carpeta</b> o <b>Abrir proyecto</b>).</li>
+          <li>Inicia el chat desde ahí.</li>
+        </ol>
+        <div class="why">
+          <b>¿Para qué sirve?</b>
+          <ul>
+            <li>La IA <b>ve y guarda</b> tus archivos en un solo lugar.</li>
+            <li>Todo queda <b>ordenado</b>: la landing, las capturas y el plan.</li>
+            <li>No mezcla tu proyecto con <b>nada más</b> de tu computador.</li>
+            <li>Después puedes <b>subir esa carpeta a GitHub</b> (extra).</li>
+          </ul>
+        </div>
+      </section>
+      <section class="step" data-n="2">
+        <h2>Instala tus herramientas</h2>
+        <p class="tag">Una sola vez · en tu computador</p>
+        <ul class="checks">
+          <li><b>Superpowers</b> <span>el plugin que enseña a la IA a planear y probar</span></li>
+        </ul>
+        <p class="muted">Pídele a la IA: "Ayúdame a instalar paso a paso Superpowers". [verificar nombre y pasos antes de la clase]</p>
+      </section>
+
+      <section class="step" data-n="3">
+        <h2>La fórmula para pedir bien</h2>
+        <p class="formula"><b class="c1">Rol</b><i>+</i><b class="c2">Contexto</b><i>+</i><b class="c3">Tarea</b><i>+</i><b class="c4">Formato</b><i>+</i><b class="c5">Ejemplo</b></p>
+      </section>
+
+      <section class="step" data-n="4">
+        <h2>Junta todo lo de tu proyecto en la carpeta</h2>
+        <p class="tag">3 min · y agrega la carpeta al agente</p>
+        <ul class="chips">
+          <li>Nombre y lema</li>
+          <li>El problema</li>
+          <li>Qué hace</li>
+          <li>Para quién es</li>
+          <li>Equipo y roles</li>
+          <li>Avances</li>
+          <li>Contacto</li>
+          <li>Documentos, datos e imágenes</li>
+        </ul>
+        <p>Guarda todos esos archivos en la carpeta del paso 1 y <b>agrégala al agente</b>. Así conoce tu proyecto sin que lo copies y pegues.</p>
+        <p class="muted">Sin datos de clientes, fotos reales ni teléfonos personales. Usa iniciales.</p>
+      </section>
+
+      <section class="step" data-n="5">
+        <h2>Activa el modo plan y pide</h2>
+        <p class="tag">Modo plan ON · menciona con <code>@</code> a <code>@superpowers</code> (u otro skill o plugin)</p>
+        <div class="copy">
+          <pre id="prompt-plan">@superpowers
+
+ROL: Eres un diseñador web experto.
+
+CONTEXTO: Somos un equipo universitario. Todos los archivos de nuestro proyecto están en la carpeta que te agregué.
+
+TAREA: Crea la landing de nuestro proyecto con portada, problema, qué hace, para quién es, equipo, avances y contacto. Además, agrégale una función sencilla que nos gustaría que tuviera: [escribe tu idea, por ejemplo un formulario de contacto, un calculador o un buscador].
+
+FORMATO: Un solo archivo HTML que se vea bien en el celular. Fondo oscuro (#0b0b14), texto claro (#f3eee6), un color de acento vivo, títulos grandes en serif, tarjetas con iniciales para el equipo, animaciones suaves al hacer scroll. Sin imágenes ni servicios externos.
+
+EJEMPLO: Una página limpia, con una pantalla por sección y párrafos de máximo 3 líneas.
+
+Antes de construir, hazme las preguntas que necesites, una por una, y propón un plan. En el plan incluye crear un AGENTS.md y un skill de diseño para este proyecto. No escribas código hasta que yo diga «aprobado».</pre>
+          <button data-copy="prompt-plan">Copiar</button>
+        </div>
+      </section>
+
+      <section class="step" data-n="6">
+        <h2>Ejemplo de AGENTS.md y de un skill</h2>
+        <p class="tag">Para partir de algo · el agente los creará con tus datos</p>
+        <p><b>AGENTS.md</b> es el manual de inducción del proyecto: lo primero que lee el agente. Guárdalo en la raíz de tu carpeta.</p>
+        <div class="copy">
+          <pre id="ej-agents"># AGENTS.md
+
+## Qué estamos construyendo
+La landing de nuestro proyecto universitario: [nombre del proyecto y una frase de lo que hace].
+
+## Para quién es
+[Público: por ejemplo, estudiantes y profesores de la universidad].
+
+## Reglas
+- Todo el texto va en español neutro, tuteando.
+- Nada de datos inventados: si falta algo, pregúntame.
+- Sin datos de clientes, fotos reales ni teléfonos personales: usa iniciales o avatares.
+- Un solo archivo HTML que se vea bien en el celular.
+
+## Cómo trabajamos
+1. Primero el plan y las preguntas. No escribas código hasta que yo diga «aprobado».
+2. Construye en pasos pequeños.
+3. Prueba en el navegador y muéstrame capturas.</pre>
+          <button data-copy="ej-agents">Copiar</button>
+        </div>
+        <p>Un <b>skill</b> es una receta que el agente lee cuando la necesita. Va en un archivo <code>SKILL.md</code> dentro de una carpeta, por ejemplo <code>.cursor/skills/diseno-landing/</code> (en ChatGPT, súbelo como un archivo más de tu carpeta o proyecto).</p>
+        <div class="copy">
+          <pre id="ej-skill">---
+name: diseno-landing
+description: Reglas de diseño para la landing del proyecto. Usar al crear o cambiar cualquier sección de la página.
+---
+# Diseño de la landing
+
+- Fondo oscuro (#0b0b14) y texto claro (#f3eee6).
+- Un solo color de acento vivo, para botones y títulos clave.
+- Títulos grandes en serif; textos de máximo 3 líneas.
+- Una pantalla por sección y mucho espacio libre.
+- Tarjetas con iniciales y rol para cada miembro del equipo.
+- Animaciones suaves al hacer scroll, sin imágenes ni servicios externos.</pre>
+          <button data-copy="ej-skill">Copiar</button>
+        </div>
+        <p class="muted">El nombre y la descripción de arriba son lo que lee el agente para decidir si usa el skill; las instrucciones, solo cuando lo necesita.</p>
+      </section>
+
+      <section class="step" data-n="7">
+        <h2>Espera el plan y apruébalo</h2>
+        <ol class="mini">
+          <li><b>Espera</b> a que termine de planear.</li>
+          <li><b>Léelo</b> y responde sus preguntas.</li>
+          <li><b>Cámbialo</b> si algo no te gusta.</li>
+          <li><b>Aprueba</b> y empieza a construir.</li>
+        </ol>
+        <div class="copy small"><pre id="prompt-ok">Aprobado. Empieza.</pre><button data-copy="prompt-ok">Copiar</button></div>
+      </section>
+
+      <section class="step" data-n="8">
+        <h2>Pídele que pruebe</h2>
+        <p class="tag">Cuando termine de construir</p>
+        <div class="copy">
+          <pre id="prompt-pruebas">Abre la landing en el navegador y pruébala: ¿se ve bien en celular y en computador? ¿hay errores en la consola? ¿están bien los nombres y roles? ¿hay datos que yo no te di? Corrige lo que falle y muéstrame capturas.</pre>
+          <button data-copy="prompt-pruebas">Copiar</button>
+        </div>
+      </section>
+
+      <section class="step" data-n="9">
+        <h2>Mejora y comparte</h2>
+        <p>Pídele <b>prototipos de diseño</b> (varias versiones para elegir) y que <b>genere imágenes</b> para tu proyecto. Luego cuéntalo en 30 segundos. 🎉</p>
+      </section>
+
+      <details class="extra">
+        <summary>Extra · Publica tu página en internet</summary>
+        <ul class="checks">
+          <li><b>Git y GitHub</b> <span>instala Git y crea tu cuenta de GitHub</span></li>
+          <li><b>MCP de GitHub</b> <span>deja que la IA use GitHub por ti</span></li>
+        </ul>
+        <p class="muted">Pídele a la IA: "Ayúdame a instalar paso a paso Git y el MCP de GitHub". [verificar nombres y pasos antes de la clase]</p>
+        <p class="tag">Luego pídele esto · la IA hace todo, tú solo supervisas</p>
+        <div class="copy">
+          <pre id="prompt-publicar">Abre el navegador, ayúdame a crear mi cuenta de GitHub (me dejas a mí poner contraseñas y códigos), crea un repositorio, sube mi landing y actívala en GitHub Pages. Al final dame el enlace público.</pre>
+          <button data-copy="prompt-publicar">Copiar</button>
+        </div>
+        <p class="muted">Nunca le dictes tu contraseña en el chat. Escríbela tú en la página.</p>
+      </details>
+      <details class="extra">
+        <summary>Plan B · Si algo falla o tarda</summary>
+        <div class="copy">
+          <pre id="prompt-planb">Crea una landing en un solo archivo HTML para este proyecto universitario. Fondo oscuro (#0b0b14), texto claro, color de acento vivo, títulos grandes en serif. Secciones: portada, problema, qué hace, para quién es, equipo (tarjetas con iniciales y rol), avances y contacto. Animaciones suaves al hacer scroll, buena en celular, sin imágenes ni servicios externos. Datos:
+
+[pega aquí el contenido del paso 4]</pre>
+          <button data-copy="prompt-planb">Copiar</button>
+        </div>
+      </details>
+
+      <details class="extra">
+        <summary>Extra · Automatiza tu mañana</summary>
+        <p class="muted">Si tu plan de ChatGPT tiene tareas programadas:</p>
+        <div class="copy">
+          <pre id="prompt-tarea">Todos los días a las 7 am, busca las 5 noticias más relevantes de innovación y tecnología sobre [el tema de mi proyecto] y envíame un resumen de 3 líneas por noticia, con su enlace.</pre>
+          <button data-copy="prompt-tarea">Copiar</button>
+        </div>
+      </details>
+
+      <footer>
+        <p>La IA es un ayudante muy listo, pero ingenuo. <b>Tú eres quien lo guía.</b></p>
+      </footer>
+    </main>
+    <script>
+      document.querySelectorAll('button[data-copy]').forEach(function (button) {
+        button.addEventListener('click', async function () {
+          var el = document.getElementById(button.dataset.copy);
+          try {
+            await navigator.clipboard.writeText(el.textContent);
+            button.textContent = '¡Copiado!';
+          } catch (e) {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            var sel = getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            button.textContent = 'Seleccionado: copia con el menú';
+          }
+          setTimeout(function () { button.textContent = 'Copiar'; }, 1800);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+
